@@ -1,0 +1,123 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+.turing-wrapper{
+    border: 1px solid #ccc;
+    margin:10px auto;
+    width: 375px;
+    height: 667px;
+    border-radius: 3px;
+    background: rgb(247, 247, 247);
+    position: relative;
+}
+.turing-wrapper header{
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 600;
+}
+.turing-wrapper .turing-content{
+    padding: 5px 10px;
+    height: 565px;
+    font-size: 14px;
+    font-weight: 600;
+    overflow-y: scroll;
+    
+}
+::-webkit-scrollbar{
+    width: 3px;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 2px;
+    background: #ccc;
+}
+::-webkit-scrollbar-track{
+    border-radius: 2px;
+}
+.turing-content .icon{
+    height: 35px;
+    width: 35px;
+    border-radius: 3px;
+}
+.turing-content .type1 img, .type1 .talk{
+    float: right;
+}
+.turing-content .type1, .type2{
+    margin-top: 10px;
+}
+.turing-content .type1::after, .type2::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.turing-content .type2 img, .type2 .talk{
+    float: left;
+}
+.turing-content .talk{
+    display: inline-block;
+    vertical-align: top;
+    line-height: 20px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    position: relative;
+    max-width: 242px;
+}
+.talk1{
+    margin-right: 10px;
+    background: rgb(96, 204, 50);
+}
+.talk1::after{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-left-color: rgb(96, 204, 50);
+    right: -10px;
+    top: 13px;
+}
+
+.talk2{
+    margin-left: 10px;
+    background: #fff;
+}
+.talk2::after{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-right-color: #fff;
+    left: -10px;
+    top: 13px;
+}
+.turing-input {
+    border-top: 1px solid #ccc;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+}
+#contentText{
+    width: 70%;
+    margin-left: 20px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    padding: 0 5px;
+}
+#submit{
+    height: 30px;
+    padding: 0 15px;
+    border: 1px solid #ccc;;
+    border-radius: 5px;
+    background: rgb(75, 197, 75);
+    color: #fff;
+}

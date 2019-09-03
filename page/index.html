@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图灵聊天机器人</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="turing-wrapper">
+        <header>聊天机器人</header>
+        <div class="turing-content">
+            <!-- <div class="type1">
+                <img src="./img/icon1.jpg" alt="" class="icon">
+
+                <div class="talk talk1">发卡时代峻峰拉萨附件阿克苏的解法开始的</div>
+            </div>
+            <div class="type2">
+                <img src="./img/icon2.jpg" alt="" class="icon">
+                <div class="talk talk2">发卡时代峻峰拉萨附件阿克苏的解法开始的</div>
+            </div> -->
+        </div>
+        <div class="turing-input">
+            <input type="text" name="" id="contentText" >
+            <button id="submit" >发送</button>
+        </div>
+    </div>
+
+    <script>
+        let inputText = document.getElementById('contentText');
+        let contentBox = document.getElementsByClassName('turing-content')[0];
+        function addTalk(type, text) {
+            let oBox = document.createElement('div')
+            let oImg = document.createElement('img');
+            let oTalk = document.createElement('div');
+            oImg.className = 'icon';
+            oTalk.classList.add('talk');
+            oTalk.innerText = text;
+
+            if (type == 1) {
+                oBox.className = 'type1'
+                oTalk.classList.add('talk1');
+                oImg.setAttribute('src', './img/icon1.jpg');
+                oBox.appendChild(oImg);
+                oBox.appendChild(oTalk);
+            } else if (type == 2) {
+                oBox.className = 'type2'
+                oTalk.classList.add('talk2');
+                oImg.setAttribute('src', './img/icon2.jpg');
+                oBox.appendChild(oImg);
+                oBox.appendChild(oTalk);
+            }
+            contentBox.appendChild(oBox);
+
+            if(contentBox.scrollHeight > 575){
+              contentBox.scrollTop = contentBox.scrollHeight - 575;
+            }
+        }
+        submit.onclick =  submitText;
+        inputText.onkeypress = function (event){
+            if(event.keyCode == 13){
+                submitText();
+            }
+        }
+        function submitText(){
+            let content = inputText.value;
+            addTalk(1, content);
+            inputText.value = ""
+            ajaxFunc('/getData', 'get', 'text=' + content, function(responseText){
+                // console.log(typeof(responseText))
+                addTalk(2, JSON.parse(responseText).text);                
+            })
+        }
+
+        function ajaxFunc(url, method, data, cb){
+            let xhr = null;
+            if(window.XMLHttpRequest){
+                xhr = new window.XMLHttpRequest();
+            }else{
+                xhr = new ActiveXObject('Microsoft.XMLHttp');
+            }
+
+            method = method.toUpperCase();
+            if(method == 'GET'){
+                xhr.open(method, url+ '?' + data);
+                xhr.send();
+            }else if(method == 'POST'){
+                xhr.open(method, url);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.send(data);
+            }
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                        cb(xhr.responseText);
+                    }else{
+                        console.log('error');
+                    }
+                }
+            }
+
+
+        }
+
+    </script>
+</body>
+
+</html>
